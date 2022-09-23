@@ -18,31 +18,39 @@ fn read_input(path: &str) -> Result<Vec<(String, i32)>, std::io::Error> {
 }
 
 fn calc_depth(input: Vec<(String, i32)>) -> i32 {
-    let mut values = Values {depth: 0, x_pos: 0, aim: 0};
+    let mut values = Values {
+        depth: 0,
+        x_pos: 0,
+        aim: 0,
+    };
 
     for (key, value) in input.into_iter() {
         match &key[..] {
             "forward" => values.x_pos += value,
             "up" => values.depth -= value,
             "down" => values.depth += value,
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
     values.depth * values.x_pos
 }
 
 fn calc_depth_two(input: Vec<(String, i32)>) -> i32 {
-    let mut values = Values {depth: 0, x_pos: 0, aim: 0};
+    let mut values = Values {
+        depth: 0,
+        x_pos: 0,
+        aim: 0,
+    };
 
     for (key, value) in input.into_iter() {
         match &key[..] {
             "forward" => {
                 values.x_pos += value;
                 values.depth += values.aim * value;
-            },
+            }
             "up" => values.aim -= value,
             "down" => values.aim += value,
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
     values.depth * values.x_pos
